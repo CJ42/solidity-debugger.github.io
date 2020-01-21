@@ -1,0 +1,95 @@
+# Contracts
+
+## Precedence order in Contract inheritance
+
+|Heading|Description|
+|-|-|
+|**Title**|Precedence order in Contract inheritance|
+|**Type**|`fatalTypeError`|
+|**Message**|```Definition of base has to precede definition of derived contract```|
+|**Solidity version**||
+|**Reference**|NameAndTypeResolver.cpp, [Lines 388 - 389](https://github.com/ethereum/solidity/blob/f05805c955f73fd2ea1d14dc9edf14b472631b17/libsolidity/analysis/NameAndTypeResolver.cpp#L388-L389)|
+|**Contributors**|CJ42|
+
+
+**Description**
+
+The base contract is defined after the derived contract.
+
+**Example**
+
+```solidity
+pragma solidity ^0.5.0;
+
+contract Person is Greetings {
+    
+   // ...
+   
+}
+
+contract Greetings {
+    
+    // ...
+    
+}
+```
+
+**Solution**
+
+Define the base contract first, then the derived contract.
+
+```solidity
+pragma solidity ^0.5.0;
+
+contract Greetings {
+    
+    // ...
+    
+}
+
+contract Person is Greetings {
+    
+   // ...
+   
+}
+```
+
+
+---
+
+## Linearization of inheritance impossible
+
+|Heading|Description|
+|-|-|
+|**Title**|Linearization of inheritance impossible|
+|**Type**|`DeclarationError`|
+|**Message**|```Linearization of inheritance graph impossible```|
+|**Solidity version**||
+|**Reference**|[NameAndTypeResolver.cpp, line 395](https://github.com/ethereum/solidity/blob/d5b2f347bf481151ff03fb6dea08e7ce1ce7194c/libsolidity/analysis/NameAndTypeResolver.cpp#L395)|
+|**Contributors**||
+
+
+**Description**
+
+This type of error might occur in two possible situations:
+- a contract (A) inherits from two other contracts (B and C), but B already inherited from C.
+- there is a problem in the order the inheritances are declared ([see this OpenZeppelin issue](https://github.com/OpenZeppelin/openzeppelin-contracts/issues/1124))
+
+**Example**
+
+```
+pragma solidity >=0.4.16 <0.7.0;
+
+contract X {}
+contract A is X {}
+contract C is A, X {}
+```
+
+**Solution**
+
+
+**References**
+
+- https://github.com/OpenZeppelin/openzeppelin-contracts/issues/1124
+- https://github.com/OpenZeppelin/openzeppelin-contracts/issues/1110
+- https://ethereum.stackexchange.com/questions/21060/multiple-inheritance-and-linearization
