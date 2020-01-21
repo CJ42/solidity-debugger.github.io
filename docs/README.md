@@ -14,27 +14,31 @@ While you are writing smart contracts in Solidity, you will encounter different 
 |Type|Description|
 |:--|:---------|
 |`warning`|Can compile, but can potentially lead to security issues in your smart contract.|
-|`SyntaxError`||
-|`TypeError`||
-|`FatalTypeError`|
-|`DeclarationError`||
-|`FatalDeclarationError`||
-|`ParserError`||
+|`SyntaxError`|Error related to the syntax|
+|`TypeError`|Error related to the type|
+|`FatalTypeError`|Error related to the type, stop parsing|
+|`DeclarationError`|Error related to variable declaration|
+|`FatalDeclarationError`|Error related to variable declaration, stop parsing|
+|`ParserError`|Internal error related to the Parser|
 
 The difference with the errors declared as `Fatal` is than the parser / compiler will throw and abort [see file ReferenceResolver.cpp for more explanation](https://github.com/ethereum/solidity/blob/develop/libsolidity/analysis/ReferencesResolver.h).
 
 
-# Current State of the Debuger List
+# Current Status of the Debuger List
 
 The table below list the current state of all the errors reported and described from the Solidity compiler.
 
+- ConstantEvaluator : **2/2** :white_check_mark:
+- ContractLevelChecker : **18** / 32
+- ContractFlowAnalyzer : **1** / 4
+- DeclarationContainer : 0 / 3
 - StaticAnalyzer : **8** / 12
 - SyntaxChecker : /29
 - TypeChecker : /192
-- ConstantEvaluator : /2
-- ContractLevelChecker : / 34
-- ContractFlowAnalyzer : / 2
-- DeclarationContainer : / 3
+
+
+
+
 - DocStringAnalyser : / 3
 - NameAndTypeResolver : / 20
 - PostTypeChecker : / 2
