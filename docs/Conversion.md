@@ -37,3 +37,63 @@ contract Example {
 **Solution**
 
 -----
+
+## Named arguments in type conversion not allowed
+
+|Heading|Description|
+|-|-|
+|**Title**|Named arguments in type conversion not allowed|
+|**Type**|`TypeError`|
+|**Message**|```Type conversion cannot allow named arguments.```|
+|**Solidity version**||
+|**Reference**|[TypeChecker.cpp, lines...]()|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+```
+pragma solidity ^0.6.0;
+
+contract BadExample {
+    
+    function f() public {
+        
+        uint({arg:1});
+    
+        
+    }
+    
+}
+```
+
+**Solution**
+
+
+
+-----
+
+## Exactly one argument expected for explicit type conversion.
+
+|Heading|Description|
+|-|-|
+|**Title**|Exactly one argument expected for explicit type conversion.|
+|**Type**|`TypeError`|
+|**Message**|```Exactly one argument expected for explicit type conversion.```|
+|**Solidity version**||
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+```
+uint256 _a = uint();
+```
+
+**Solution**
+

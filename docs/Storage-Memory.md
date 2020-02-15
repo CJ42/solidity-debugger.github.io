@@ -33,3 +33,61 @@ contract Example {
 **Solution**
 
 Remove the data location specifier.
+
+-----
+
+## Uninitialized storage pointer
+
+|Heading|Description|
+|-|-|
+|**Title**||
+|**Type**|`DeclarationError` (since 0.5.12)|
+|**Message**|```Uninitialized storage pointer.```|
+|**Solidity version**||
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+This type of error occurs with variables of type `mapping`, `struct` or `array`.
+
+When such variable is 1) a local variable (defined within a function), and 2) a reference pointer to a state variable (storage variable, defined with the keyword `storage` for data location).
+
+The error occurs because the state variable is uninitialized.
+
+The example below, taken from b9lab blog is self explanatory.
+
+**Example**
+
+```
+pragma solidity ^0.4.0;
+
+contract FirstSurprise {
+ 
+ struct Camper {
+   bool isHappy;
+ }
+ 
+ mapping(uint => Camper) public campers;
+ 
+ function setHappy(uint index) public {
+   campers[index].isHappy = true;
+ }
+ 
+ function surpriseOne(uint index) public {
+   Camper storage c;
+   c.isHappy = false;
+ }
+}
+```
+
+**Solution**
+
+Initialized the variable within the constructor, or before the `storage` reference occurs.
+
+**Reference**
+
+- https://blog.b9lab.com/storage-pointers-in-solidity-7dcfaa536089
+
+- https://github.com/ethereum/solidity/blob/develop/test/libsolidity/syntaxTests/nameAndTypeResolution/211_uninitialized_mapping_array_variable.sol

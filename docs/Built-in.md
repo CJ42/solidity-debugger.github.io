@@ -145,3 +145,49 @@ contract Escrew {
 ```
 
 **Solution**
+
+
+-----
+
+## Returned value of low level call not used
+
+|Heading|Description|
+|-|-|
+|**Title**|Return of low level call not used|
+|**Type**|`Warning`|
+|**Message**|```Returned value of low level call not used```|
+|**Solidity version**||
+|**Reference**||
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+```
+pragma solidity ^0.6.0;
+
+contract DeployedContract {
+    uint public result = 0;
+
+    function add(uint input) public {
+        result = result + input;
+    }
+}
+
+
+contract Proxy {    
+    
+    address deployed_contract = 0x1212121212121212121212121212121212121212;
+
+    function LowLevelCall(uint lucky_number) public { 
+        bytes memory _calldata = abi.encode(bytes4(keccak256("add(uint256)")), lucky_number);
+        deployed_contract.call(_calldata);
+    }
+
+
+}
+```
+
+**Solution**

@@ -208,3 +208,82 @@ interface LegalContract {
     
 }
 ```
+
+----
+
+## Interface defined as `abstract`
+
+|Heading|Description|
+|-|-|
+|**Title**|Interface defined as `abstract`|
+|**Type**|`TypeError`|
+|**Message**|```Interfaces do not need the "abstract" keyword, they are abstract implicitly.```|
+|**Solidity version**|since 0.6.1|
+|**Reference**|ContractLevelChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+An `interface` is defined as `abstract`.
+
+**Example**
+
+```
+pragma solidity >=0.4.16 <0.7.0;
+
+abstract interface Example {
+    
+}
+
+```
+
+**Solution**
+
+Remove the `abstract` keyword. Interface are abstract contracts, since they contain only functions without implementations.
+
+-----
+
+## Interface function declared as `virtual`
+
+|Heading|Description|
+|-|-|
+|**Title**|Interface function declared as `virtual`|
+|**Type**|`warning`|
+|**Message**|```Interface functions are implicitly "virtual"```|
+|**Solidity version**|since 0.6.1|
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+This warning message reminds you that it is not necessary to use the `virtual` keyword when defining a function within an `interface`, since interface's functions never are implemented. Therefore, they are `virtual` by default.
+
+**Example**
+
+```
+pragma solidity ^0.6.0;
+
+interface Example {
+    
+    function f() external virtual;
+    
+}
+```
+
+**Solution**
+
+
+```
+pragma solidity ^0.6.0;
+
+interface Example {
+    
+    function f() external virtual;
+    
+}
+
+
+
+```

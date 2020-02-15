@@ -244,3 +244,39 @@ contract C {
 **References**
 
 - https://github.com/trufflesuite/truffle/issues/135
+
+-----
+
+## Variable type cannot be `library`
+
+|Heading|Description|
+|-|-|
+|**Title**|Variable type cannot be `library`|
+|**Type**|`TypeError`|
+|**Message**|```The type of a variable cannot be a library.```|
+|**Solidity version**|since 0.5.13|
+|**Reference**|TypeChecker.cpp, line 473|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+```
+pragma solidity ^0.5.0;
+
+library A {
+ 
+}
+
+
+contract B {
+    
+    A my_contract;
+    
+}
+```
+
+**Solution**
+

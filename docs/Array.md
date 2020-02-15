@@ -205,3 +205,72 @@ contract c {
 ```
 
 **Solution**
+
+
+-----
+
+## Empty array component
+
+|Heading|Description|
+|-|-|
+|**Title**|Empty array component|
+|**Type**|`FatalTypeError`|
+|**Message**|```Array component cannot be empty```|
+|**Solidity version**||
+|**Reference**||
+|**Contributors**||
+
+
+**Description**
+
+This error occurs when an array is defined but one of its component is empty. The errors is generated for both an inline array (within a function body), or an array that is part of a contract's storage (defined outside a function).
+
+**Example**
+
+```solidity
+pragma solidity ^0.5.10;
+
+contract Greetings {
+    
+    function doNothing() public pure {}
+    
+    string[3] greetings = ["Hello", "Ola", doNothing()];
+     
+}
+
+```
+
+**Solution**
+
+
+-----
+
+## Inline array cannot be declared as lvalue
+
+|Heading|Description|
+|-|-|
+|**Title**|Inline array cannot be declared as lvalue|
+|**Type**|`FatalTypeError`|
+|**Message**|```Inline array type cannot be declared as LValue.```|
+|**Solidity version**||
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+
+```
+pragma solidity ^0.5.0;
+
+contract C {
+    function f() public {
+        [1, 2, 3]++;
+        [1, 2, 3] = [4, 5, 6];
+    }
+}
+```
+
+**Solution**

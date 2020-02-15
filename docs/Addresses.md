@@ -32,4 +32,40 @@ contract Example {
 
 Remove the keyword `view` or `pure` in your variable declaration.
 
----
+-----
+
+## Explicit conversion from non-payable address to contract with payable fallback function
+
+|Heading|Description|
+|-|-|
+|**Title**|Explicit conversion from non-payable address to contract with payable fallback function|
+|**Type**|`TypeError`|
+|**Message**|```Explicit type conversion not allowed from non-payable "address" to [Contract type variable], which has a payable fallback function.```|
+|**Solidity version**||
+|**Reference**|[TypeChecker.cpp, lines...]()|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+```
+pragma solidity ^0.5.10;
+
+contract BadExample {
+    
+  function f() public pure returns (C c) {
+    address a = address(2);
+    c = C(a);
+  }
+  
+  function() external payable {
+    // some code here
+  }
+  
+}
+
+```
+
+**Solution**

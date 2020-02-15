@@ -171,3 +171,37 @@ contract C {
 ```
 
 **Solution**
+
+
+-----
+
+## Fractional numbers cannot yet be encoded
+
+
+|Heading|Description|
+|-|-|
+|**Title**|Fractional numbers cannot yet be encoded|
+|**Type**|`TypeError`|
+|**Message**|```Fractional numbers cannot yet be encoded.```|
+|**Solidity version**||
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+```
+pragma solidity ^0.5.12;
+
+contract Example {
+    
+    function test() public pure returns (bytes memory) {
+        return abi.encode(32/7);
+    }
+    
+}
+```
+
+**Solution**

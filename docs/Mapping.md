@@ -148,3 +148,45 @@ contract C {
 ```
 
 **Solution**
+
+
+-----
+
+## Mappings cannot be assigned to
+
+|Heading|Description|
+|-|-|
+|**Title**|Mappings cannot be assigned to|
+|**Type**|`TypeError`|
+|**Message**|```Mappings cannot be assigned to```|
+|**Solidity version**||
+|**Reference**||
+|**Contributors**||
+
+
+**Description**
+
+This error in Solidity describes a case when we try to assign a mapping to another.
+
+**Example**
+
+```solidity
+pragma solidity ^0.5.0;
+
+contract Example {
+    
+    mapping(uint=>uint) map;
+    
+    function error() public {
+        
+        mapping(uint=>uint) storage a = map;
+        map = a;
+        (map) = a;
+        (map, map) = (a, a);
+        
+    }
+    
+}
+```
+
+**Solution**

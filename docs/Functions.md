@@ -621,3 +621,75 @@ contract Test {
 ---
 
 
+
+# `virtual` and `private` cannot be used together
+
+|Heading|Description|
+|-|-|
+|**Title**||
+|**Type**||
+|**Message**||
+|**Solidity version**||
+|**Reference**||
+|**Contributors**||
+
+
+**Description**
+
+In Solidity, functions defined as `private` are visible only in the contract they are defined in, not the inheritting contracts.
+
+A function defined with the `virtual` keyword can be **overriden** in inheritting contracts.
+
+Therefore, these two keywords conflict and cannot be used together.
+
+**Example**
+
+```
+pragma solidity ^0.6.0;
+
+contract A {
+
+    function test() private virtual {
+        // some logic here
+    }
+    
+}
+```
+
+**Solution**
+
+If you want your future contracts to be able to override this function, then the best case would be to define it as `internal`.
+
+-----
+
+## Functions without implementation must be declared `virtual`
+
+|Heading|Description|
+|-|-|
+|**Title**|Functions without implementation must be declared `virtual`|
+|**Type**|`TypeError`|
+|**Message**|```Functions without implementation must be marked virtual.```|
+|**Solidity version**|since 0.6.0|
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+```
+pragma solidity ^0.6.0;
+
+contract Example {
+
+    function g() public {
+        // some code here
+    }
+    
+    function f() public;
+    
+}
+```
+
+**Solution**

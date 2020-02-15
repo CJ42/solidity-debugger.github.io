@@ -345,3 +345,71 @@ library MyLibrary {
 ```
 
 **Solution**
+
+
+-----
+
+## Library defined as `abstract`
+
+|Heading|Description|
+|-|-|
+|**Title**|Library defined as `abstract`|
+|**Type**|`TypeError`|
+|**Message**|```libraries cannot be abstract.```|
+|**Solidity version**|since 0.6.1|
+|**Reference**|ContractLevelChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+A `library` is defined with the keyword `abstract`
+
+**Example**
+
+```
+pragma solidity >=0.4.16 <0.7.0;
+
+abstract library Example {
+    
+}
+
+```
+
+**Solution**
+
+Remove the `abstract` keyword. Libraries cannot be abstract.
+
+
+----
+
+## Library cannot inherit
+
+|Heading|Description|
+|-|-|
+|**Title**|Library cannot inherit|
+|**Type**|`TypeError`|
+|**Message**|```Library is not allowed to inherit```|
+|**Solidity version**||
+|**Reference**|ContractLevelChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+A `library` contract attempt to inherit from another contract or library
+
+**Example**
+
+**Solution**
+
+
+```
+library AcademicLibrary {
+    
+}
+
+library BritishLibrary is AcademicLibrary {
+    
+}
+```

@@ -93,3 +93,73 @@ contract C is A, X {}
 - https://github.com/OpenZeppelin/openzeppelin-contracts/issues/1124
 - https://github.com/OpenZeppelin/openzeppelin-contracts/issues/1110
 - https://ethereum.stackexchange.com/questions/21060/multiple-inheritance-and-linearization
+
+
+-----
+
+## Contract with payable fallback function but no `receive` ether function
+
+|Heading|Description|
+|-|-|
+|**Title**|Contract with payable fallback function but no `receive` ether function|
+|**Type**||
+|**Message**||
+|**Solidity version**||
+|**Reference**||
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+```
+pragma solidity >=0.4.16 <0.7.0;
+
+contract Example {
+    
+    function f() public {
+        
+    }
+    
+    fallback() external payable {
+        
+    }
+}
+```
+
+**Solution**
+
+
+
+-----
+
+# Contract Should be defined as `abstract`
+
+|Heading|Description|
+|-|-|
+|**Title**|Contract should be defined as `abstract`|
+|**Type**|`TypeError`|
+|**Message**|```Missing Implementation: Contract [… should be marked as abstract.```|
+|**Solidity version**|since 0.6.0|
+|**Reference**|[ContractLevelChecker.cpp, lines 28-232]()|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+
+```
+pragma solidity >=0.4.16 <0.7.0;
+
+contract Example {
+    
+    function f() public virtual pure;
+}
+
+```
+
+**Solution**
+
