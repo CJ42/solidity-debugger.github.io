@@ -69,3 +69,45 @@ contract BadExample {
 ```
 
 **Solution**
+
+-----
+
+# Use of send or transfer with non payable address
+
+
+|Heading|Description|
+|-|-|
+|**Title**|Use of send or transfer with non payable address|
+|**Type**|`TypeError`|
+|**Message**|```"send" and "transfer" are only available for objects of type "address payable", not <...>.```|
+|**Solidity version**||
+|**Reference**|[TypeChecker.cpp, line 2126](https://github.com/ethereum/solidity/blob/4f7fec6911482c9c3f8fbf2e3fa5874597648fc6/libsolidity/analysis/TypeChecker.cpp#L2126)|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+```
+pragma solidity ^0.5.10;
+
+contract Test {
+    
+    address officer;
+    
+    function MultiplyByTwo(uint _number) internal pure returns (uint) {
+        return _number * 2;
+    }
+    
+    function PayDoublePenalty(uint _penalty) external payable {
+        uint total = MultiplyByTwo(_penalty);
+        officer.transfer(total);
+    }
+    
+    
+}
+
+```
+
+**Solution**

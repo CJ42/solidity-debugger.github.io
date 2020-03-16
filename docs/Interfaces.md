@@ -283,7 +283,40 @@ interface Example {
     function f() external virtual;
     
 }
+```
+
+-----
+
+# Cannot instantiate an interface
 
 
+|Heading|Description|
+|-|-|
+|**Title**|Cannot instantiate an interface|
+|**Type**|`TypeError`|
+|**Message**|```Cannot instantiate an interface```|
+|**Solidity version**||
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
 
 ```
+pragma solidity ^0.6.0;
+
+  
+interface I {}
+
+contract C {
+    
+    function f() public {
+        new I();
+    }
+    
+}
+```
+
+**Solution**

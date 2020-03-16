@@ -163,3 +163,118 @@ contract Example {
 
 **Solution**
 
+
+-----
+
+# Identifier is not a contract
+
+
+|Heading|Description|
+|-|-|
+|**Title**|Identifier is not a contract|
+|**Type**|`FatalTypeError`|
+|**Message**|```Identifier is not a contract```|
+|**Solidity version**||
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+**Solution**
+
+
+```
+pragma solidity ^0.5.0;
+
+contract Base {
+    
+}
+
+contract Example {
+    
+    struct myStruct {
+        address hey;    
+    }
+    
+    function test() public {
+        Base _new = new myStruct();
+    }
+    
+}
+```
+
+-----
+
+-----
+
+# Trying to create an instance of an abstract contract
+
+|Heading|Description|
+|-|-|
+|**Title**|Trying to create an instance of an abstract contract|
+|**Type**|`TypeError`|
+|**Message**|```Trying to create an instance of an abstract contract```|
+|**Solidity version**|before 0.6.0|
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+```
+pragma solidity ^0.5.0;
+
+contract C {
+  function a() public;
+}
+
+contract D {
+  function f() public {
+    new C();
+  }
+}
+```
+
+**Solution**
+
+-----
+
+# Trying to create an instance of an abstract contract (2)
+
+
+|Heading|Description|
+|-|-|
+|**Title**|Trying to create an instance of an abstract contract (2)|
+|**Type**|`TypeError`|
+|**Message**|```Cannot instantiate an abstract contract```|
+|**Solidity version**||
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+Same as above, but from 0.6.0. The error is different because of the introduction of the `abstract` keyword.
+
+**Example**
+
+```
+pragma solidity ^0.6.0;
+
+abstract contract C {
+  function a() public;
+}
+
+contract D {
+  function f() public {
+    new C();
+  }
+}
+```
+
+**Solution**

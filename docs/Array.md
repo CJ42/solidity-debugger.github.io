@@ -274,3 +274,40 @@ contract C {
 ```
 
 **Solution**
+
+
+-----
+
+## Out of bounds array access
+
+|Heading|Description|
+|-|-|
+|**Title**|Out of bounds array access|
+|**Type**|`TypeError`|
+|**Message**|```Out of bounds array access```|
+|**Solidity version**||
+|**Reference**|[TypeChecker.cpp, lines 2230](https://github.com/ethereum/solidity/blob/508cf66da2bdfb7e6677029c9671a0f3ffec68b8/libsolidity/analysis/TypeChecker.cpp#L2230)|
+|**Contributors**||
+
+
+**Description**
+
+This error occurs when you try to access an index that is out of the limit of the array.
+
+**Example**
+
+```
+pragma solidity ^0.5.10;
+
+contract Test {
+    
+    uint8[5] foo = [1,2,3,4,5];
+    
+    function getElement() public view returns(uint8) {
+        return foo[5];
+    }
+    
+}
+```
+
+**Solution**

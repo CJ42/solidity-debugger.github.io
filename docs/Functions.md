@@ -693,3 +693,81 @@ contract Example {
 ```
 
 **Solution**
+
+
+-----
+
+# Duplicate named arguments
+
+|Heading|Description|
+|-|-|
+|**Title**|Duplicate named arguments|
+|**Type**|`TypeError`|
+|**Message**|```Duplicate named argument <arg>```|
+|**Solidity version**||
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+```
+pragma solidity ^0.5.0;
+
+contract test {
+    
+    function a(uint a, uint b) public returns (uint r) {
+        r = a + b;
+    }
+    
+    function b() public returns (uint r) {
+        r = a({a: 1, a: 2});
+    }
+    
+}
+```
+
+**Solution**
+
+
+-----
+
+# Named argument does not match function declaration
+
+|Heading|Description|
+|-|-|
+|**Title**|Named argument does not match function declaration|
+|**Type**|`TypeError`|
+|**Message**|```Named argument does not match function declaration```|
+|**Solidity version**||
+|**Reference**|TypeChecker.cpp|
+|**Contributors**||
+
+
+**Description**
+
+**Example**
+
+
+```
+pragma solidity ^0.5.0;
+
+contract test {
+    
+    function a(uint a, uint b) public returns (uint r) {
+        r = a + b;
+    }
+    
+    function b() public returns (uint r) {
+        r = a({a: 1, c: 2});
+    }
+
+    
+}
+```
+
+
+
+**Solution**
